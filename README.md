@@ -1,3 +1,5 @@
+[![Go](https://github.com/matthewware/uncertainty/actions/workflows/go.yml/badge.svg)](https://github.com/matthewware/uncertainty/actions/workflows/go.yml)
+
 Simple package to implements the most basic functional forms of
 [error propogation](https://en.wikipedia.org/wiki/Propagation_of_uncertainty).
 
