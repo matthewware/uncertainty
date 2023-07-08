@@ -1,6 +1,7 @@
 package uncertainty
 
 import (
+	"fmt"
 	"math"
 	"testing"
 )
@@ -27,11 +28,11 @@ func TestUFloat_Subtract(t *testing.T) {
 	}
 }
 
-func TestScalar_Multiply(t *testing.T) {
+func TestMultiplyByFloat(t *testing.T) {
 	f1 := 2.00
 	uf2 := UFloat{Value: 3, Uncertainty: 0.2}
 	expected := UFloat{Value: 6, Uncertainty: 2 * 0.2}
-	result := ScalarMultiply(f1, uf2)
+	result := uf2.MultiplyByFloat(f1)
 
 	if result != expected {
 		t.Errorf("Scalar multiplication test failed: expected %v, got %v", expected, result)
@@ -60,19 +61,29 @@ func TestUFloat_Divide(t *testing.T) {
 	}
 }
 
-// func ExampleUncertainty() {
-//
-// 	func foo(f1 UFloat, f2 UFloat) ( res UFloat) {
-// 		return f1.Multiply(f2) // f1 * f2
-// 	}
-//
-// 	func bar(f1 UFloat, f2 UFloat) (res UFloat) {
-// 		return f1.Divide(f2).ScalarMulitply(4) // 4 * (f1 / f2)
-// 	}
-//
-// 	// UFloat type is {value, standard deviation}
-// 	a := UFloat(1.2, 0.3)
-// 	b := UFloat(4.5, 0.6)
-// 	fmt.Println(foo(a, b))
-// 	fmt.Println(bar(a, b))
-// }
+func foo(f1 UFloat, f2 UFloat) UFloat {
+	return f1.Multiply(f2) // f1 * f2
+}
+
+func bar(f1 UFloat, f2 UFloat) UFloat {
+	uf := f1.Divide(f2)
+	return uf.MultiplyByFloat(4) // 4 * (f1 / f2)
+}
+
+func ExampleUncertainty() {
+
+	//	func foo(f1 UFloat, f2 UFloat) UFloat {
+	//		return f1.Multiply(f2) // f1 * f2
+	//	}
+	//
+	//	func bar(f1 UFloat, f2 UFloat) UFloat {
+	//		uf := f1.Divide(f2)
+	//		return uf.MultiplyByFloat(4) // 4 * (f1 / f2)
+	//	}
+
+	// UFloat type is {value, standard deviation}
+	a := UFloat{Value: 1.2, Uncertainty: 0.3}
+	b := UFloat{Value: 4.5, Uncertainty: 0.6}
+	fmt.Println(foo(a, b))
+	fmt.Println(bar(a, b))
+}

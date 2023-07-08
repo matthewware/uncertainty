@@ -18,8 +18,8 @@ func foo(f1 uncertainty.UFloat, f2 uncertainty.UFloat) uncertainty.UFloat{
 }
 
 func bar(f1 uncertainty.UFloat, f2 uncertainty.UFloat) uncertainty.UFloat{
-    uf := f1.Divided(f2)) // 4 * (f1 / f2)
-    return uf.MultiplyByFloat(2.5)
+    uf := f1.Divide(f2))
+    return uf.MultiplyByFloat(2.5) // 4 * (f1 / f2)
 }
 
 func main() {
@@ -31,4 +31,4 @@ func main() {
 }
 ```
 
-Current functions are Add, Subtract, Multiply, Divide, ScalarMulitply.
+Current functions are Add, Subtract, Multiply, Divide, MultiplyByFloat.
