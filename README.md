@@ -1,5 +1,5 @@
 Simple package to implements the most basic functional forms of
-[error propogations](https://en.wikipedia.org/wiki/Propagation_of_uncertainty).
+[error propogation](https://en.wikipedia.org/wiki/Propagation_of_uncertainty).
 
 Assumes no covariance. Each number is assumed to be an independent sample.
 
