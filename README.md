@@ -9,21 +9,23 @@ package main
 
 import (
     "fmt"
+
     "github.com/matthewware/uncertainty"
 )
 
-func foo(f1 UFloat, f2 UFloat) UFloat{
+func foo(f1 uncertainty.UFloat, f2 uncertainty.UFloat) uncertainty.UFloat{
     return f1.Multiply(f2) // f1 * f2
 }
 
-func bar(f1 UFloat, f2 UFloat) UFloat{
-    return ScalarMulitply(4, f1.Divided(f2)) // 4 * (f1 / f2)
+func bar(f1 uncertainty.UFloat, f2 uncertainty.UFloat) uncertainty.UFloat{
+    uf := f1.Divided(f2)) // 4 * (f1 / f2)
+    return uf.MultiplyByFloat(2.5)
 }
 
 func main() {
     // UFloat type is {value, standard deviation}
-    a := UFloat(1.2, 0.3)
-    b := UFloat(4.5, 0.6)
+    a := uncertainty.UFloat(Value: 1.2, Uncertianty: 0.3)
+    b := uncertainty.UFloat(Value: 4.5, Uncertainty: 0.6)
     fmt.Println(foo(a,b))
     fmt.Println(bar(a,b))
 }

@@ -24,8 +24,8 @@ func (uf1 UFloat) Subtract(uf2 UFloat) UFloat {
 	}
 }
 
-// Multiply returns the product of two UFloat values.
-func (uf UFloat) ScalarMultiply(f float64) UFloat {
+// Multiply returns the product of a UFloat value and a float64.
+func (uf UFloat) MultiplyByFloat(f float64) UFloat {
 	value := f * uf.Value
 	uncertainty := math.Abs(f) * uf.Uncertainty
 	return UFloat{
